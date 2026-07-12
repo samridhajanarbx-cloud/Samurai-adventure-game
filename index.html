@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Soul Samurai</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="gameContainer">
+    <canvas id="gameCanvas" width="1280" height="720"></canvas>
+
+    <!-- ===================== HUD ===================== -->
+    <div id="hud">
+      <div id="topLeft">
+        <div class="barLabel">HP</div>
+        <div class="barBg"><div id="healthBar" class="barFill health"></div></div>
+        <div class="barLabel">STAMINA</div>
+        <div class="barBg"><div id="staminaBar" class="barFill stamina"></div></div>
+      </div>
+
+      <div id="topRight">
+        <div class="counter">👻 <span id="soulCount">0</span></div>
+        <div class="counter">💰 <span id="coinCount">0</span></div>
+        <div class="counter" id="weaponDisplay">🗡️ Rusted Katana</div>
+      </div>
+
+      <div id="zoneBanner"></div>
+
+      <div id="bossBarWrap" class="hidden">
+        <div id="bossName">Boss</div>
+        <div class="barBg boss"><div id="bossBar" class="barFill bossfill"></div></div>
+      </div>
+
+      <div id="prompt" class="hidden"></div>
+    </div>
+
+    <!-- ===================== START SCREEN ===================== -->
+    <div id="startScreen" class="overlayScreen">
+      <h1>⚔ SOUL SAMURAI ⚔</h1>
+      <p class="subtitle">A Journey Through Souls, Steel, and Shadow</p>
+      <button id="newGameBtn">New Game</button>
+      <button id="continueBtn">Continue</button>
+      <div class="controlsHint">
+        <p><b>Move:</b> A/D or ←/→ &nbsp; <b>Jump:</b> W / Space (double jump in air) &nbsp; <b>Dash:</b> Shift</p>
+        <p><b>Attack:</b> J or Left Click &nbsp; <b>Shop/Inventory:</b> B &nbsp; <b>Pause:</b> Esc</p>
+      </div>
+    </div>
+
+    <!-- ===================== PAUSE MENU ===================== -->
+    <div id="pauseScreen" class="overlayScreen hidden">
+      <h2>Paused</h2>
+      <button id="resumeBtn">Resume</button>
+      <button id="saveBtn">Save Game</button>
+      <button id="shopFromPauseBtn">Open Shop / Inventory</button>
+      <button id="restartBtn">Restart Journey</button>
+    </div>
+
+    <!-- ===================== SHOP / INVENTORY ===================== -->
+    <div id="shopScreen" class="overlayScreen hidden">
+      <h2>Katana Forge</h2>
+      <p>Coins: <span id="shopCoinCount">0</span></p>
+      <div id="weaponList"></div>
+      <button id="closeShopBtn">Close</button>
+    </div>
+
+    <!-- ===================== GAME OVER ===================== -->
+    <div id="deathScreen" class="overlayScreen hidden">
+      <h2 class="deathTitle">You Have Fallen</h2>
+      <p>Your soul lingers... respawning at the last shrine.</p>
+      <button id="respawnBtn">Respawn</button>
+    </div>
+
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/input.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/weapons.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/enemies.js"></script>
+  <script src="js/bosses.js"></script>
+  <script src="js/world.js"></script>
+  <script src="js/save.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>

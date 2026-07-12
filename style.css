@@ -1,0 +1,105 @@
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background:#05050a;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+  font-family:'Georgia', serif;
+  color:#eee;
+  overflow:hidden;
+}
+
+#gameContainer {
+  position:relative;
+  width:1280px;
+  height:720px;
+  box-shadow:0 0 60px rgba(180,30,30,0.35);
+  border:2px solid #3a1010;
+}
+
+canvas { display:block; background:#000; image-rendering:pixelated; }
+
+/* ============ HUD ============ */
+#hud { position:absolute; inset:0; pointer-events:none; }
+
+#topLeft { position:absolute; top:16px; left:16px; width:260px; }
+#topRight { position:absolute; top:16px; right:16px; text-align:right; }
+
+.barLabel { font-size:11px; letter-spacing:2px; color:#ccc; margin-bottom:2px; text-shadow:1px 1px 2px #000; }
+.barBg {
+  width:100%; height:16px; background:rgba(0,0,0,0.55);
+  border:2px solid #1a1a1a; border-radius:4px; margin-bottom:8px; overflow:hidden;
+}
+.barFill { height:100%; width:100%; transition:width 0.15s ease-out; }
+.health { background:linear-gradient(90deg,#ff2d2d,#a70000); }
+.stamina { background:linear-gradient(90deg,#2dd6ff,#0074a7); }
+
+.counter {
+  background:rgba(0,0,0,0.55); border:1px solid #444; border-radius:6px;
+  padding:4px 10px; margin-bottom:6px; font-size:15px; display:inline-block;
+  text-shadow:1px 1px 2px #000;
+}
+
+#zoneBanner {
+  position:absolute; top:40%; left:50%; transform:translate(-50%,-50%);
+  font-size:34px; letter-spacing:6px; color:#ffdca0; text-shadow:0 0 12px #000, 0 0 20px #b5651d;
+  opacity:0; transition:opacity 1.2s ease;
+}
+#zoneBanner.show { opacity:1; }
+
+#bossBarWrap {
+  position:absolute; top:16px; left:50%; transform:translateX(-50%); width:520px; text-align:center;
+}
+#bossName { color:#ff8a8a; letter-spacing:3px; font-size:16px; margin-bottom:4px; text-shadow:1px 1px 3px #000; }
+.boss { height:20px; border-color:#5a0000; }
+.bossfill { background:linear-gradient(90deg,#ff0000,#4a0000); }
+
+#prompt {
+  position:absolute; bottom:60px; left:50%; transform:translateX(-50%);
+  background:rgba(0,0,0,0.6); padding:6px 16px; border-radius:6px; font-size:14px;
+}
+
+.hidden { display:none !important; }
+
+/* ============ Overlay Screens ============ */
+.overlayScreen {
+  position:absolute; inset:0; background:rgba(5,5,10,0.92);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  pointer-events:all; text-align:center; z-index:10;
+}
+.overlayScreen h1 {
+  font-size:52px; color:#ffb347; text-shadow:0 0 20px #b5651d, 0 0 5px #000; letter-spacing:4px; margin-bottom:6px;
+}
+.overlayScreen h2 { font-size:32px; color:#ffb347; margin-bottom:18px; letter-spacing:2px; }
+.subtitle { color:#aaa; margin-bottom:30px; font-style:italic; }
+.controlsHint { margin-top:26px; color:#999; font-size:13px; line-height:1.8; }
+
+.overlayScreen button {
+  background:linear-gradient(180deg,#7a1f1f,#3d0d0d);
+  border:1px solid #ffb347; color:#ffe4b5; font-size:18px; padding:10px 34px;
+  margin:6px; border-radius:6px; cursor:pointer; font-family:'Georgia',serif;
+  letter-spacing:1px; transition:transform 0.1s, box-shadow 0.2s;
+}
+.overlayScreen button:hover { transform:scale(1.04); box-shadow:0 0 16px #ffb347; }
+
+.deathTitle { color:#ff3b3b !important; text-shadow:0 0 20px #700 !important; }
+
+/* ============ Shop ============ */
+#weaponList { display:flex; flex-direction:column; gap:8px; width:640px; max-height:420px; overflow-y:auto; margin-bottom:16px; }
+.weaponCard {
+  display:flex; justify-content:space-between; align-items:center;
+  background:rgba(255,255,255,0.05); border:1px solid #555; border-radius:6px; padding:10px 16px;
+  text-align:left;
+}
+.weaponCard.owned { border-color:#3fa34d; }
+.weaponCard.equipped { border-color:#ffb347; box-shadow:0 0 10px rgba(255,179,71,0.5); }
+.weaponInfo b { color:#ffdca0; font-size:16px; }
+.weaponInfo .stats { color:#aaa; font-size:12px; margin-top:2px; }
+.weaponInfo .special { color:#8fd3ff; font-size:12px; margin-top:2px; font-style:italic; }
+.weaponCard button {
+  background:#3d0d0d; border:1px solid #ffb347; color:#ffe4b5; padding:6px 14px;
+  border-radius:5px; cursor:pointer; font-size:13px;
+}
+.weaponCard button:disabled { opacity:0.4; cursor:default; }
